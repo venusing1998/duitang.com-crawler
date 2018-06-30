@@ -67,7 +67,7 @@ def main(label):
 
 
 if __name__ == '__main__':
-    print('*'*20, 'begin','*'*20, '\n')
+    print('*'*20, 'begin', '*'*20, '\n')
     print('author: Chris\n')
     print('*'*47)
     label = input('Please input the keyword:\n')  # label的东西改变即可
