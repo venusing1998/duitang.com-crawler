@@ -1,4 +1,3 @@
--i https://pypi.tuna.tsinghua.edu.cn/simple
 beautifulsoup4==4.6.0
 lxml==4.2.1
 requests==2.18.4
