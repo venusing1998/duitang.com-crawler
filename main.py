@@ -13,12 +13,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(BASE_DIR, "dist")
 
 
-def get_html(keyword, start):
+def get_html(kw, start):
     """获取网页源代码
 
     """
     url = "https://www.duitang.com/napi/blog/list/by_search/?kw={}&start={}"
-    new_url = url.format(keyword, start)
+    new_url = url.format(kw, start)
     headers = {
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36"
     }
@@ -84,12 +84,12 @@ def main(start):
     """主函数
 
     """
-    # 这里修改keyword
-    keyword = "泰妍"
-    json = get_html(keyword, start)
+    # 这里修改kw
+    kw = "泰妍"
+    json = get_html(kw, start)
     for item in get_images(json):
         print("正在下载: ", item["path"], sep="")
-        write_into_file(keyword, item)
+        write_into_file(kw, item)
 
 
 if __name__ == '__main__':
