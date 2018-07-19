@@ -1,14 +1,13 @@
 import json
 import os
-import threading
 from hashlib import md5
-from multiprocessing.pool import Pool
+from multiprocessing.dummy import Pool
 
 import requests
 
 # 参数
 GROUP_START = 1
-GROUP_END = 1
+GROUP_END = 200
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(BASE_DIR, "dist")
 
@@ -93,12 +92,8 @@ def main(start):
 
 
 if __name__ == '__main__':
-    print('*'*20, 'begin', '*'*20, '\n')
-    print('author: Chris\n')
-    print('*'*47)
-    pool = Pool()
+    pool = Pool(16)
     groups = ([x * 24 for x in range(GROUP_START-1, GROUP_END+1)])
     pool.map(main, groups)
     pool.close()
     pool.join()
-    print('*'*21, 'end', '*'*21, '\n')
