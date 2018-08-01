@@ -7,7 +7,7 @@ import requests
 
 # 参数
 GROUP_START = 1
-GROUP_END = 200
+GROUP_END = 10
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(BASE_DIR, "dist")
 
@@ -24,8 +24,9 @@ def get_html(kw, start):
     try:
         response = requests.get(new_url, headers=headers)
         if response.status_code == 200:
-            html = response.json()
-            return html
+            html = response.text
+            json_loads = json.loads(html)
+            return json_loads
     except requests.ConnectionError:
         return None
 
