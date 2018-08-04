@@ -26,8 +26,8 @@ def get_html(kw, start):
         if response.status_code == 200:
             result = response.json()
             return result
-    except requests.ConnectionError:
-        return None
+    except requests.ConnectionError as e:
+        print(e)
 
 
 def get_images(json):
@@ -39,10 +39,9 @@ def get_images(json):
         object_list = data.get("object_list")
         if object_list:
             for item in object_list:
-                photo = item.get("photo")
-                yield {
-                    "path": photo.get("path")
-                }
+                contents = {}
+                contents["path"] = item.get("photo").get("path")
+                yield contents
 
 
 def write_into_file(keyword, item):
